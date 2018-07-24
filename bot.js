@@ -477,4 +477,23 @@ client.on('ready', () => {
   client.user.setGame('[2help]..[2play]','https://www.twitch.tv/pd13');
 });
 
+
+client.on('message', message => {
+                                if(!message.channel.guild) return;
+                     if(message.content.startsWith(prefix +'ping')) {
+                            if(!message.channel.guild) return;
+                            var msg = `${Date.now() - message.createdTimestamp}`
+                            var api = `${Math.round(client.ping)}`
+                            if (message.author.bot) return;
+                        let embed = new Discord.RichEmbed()
+                        .setAuthor(message.author.username,message.author.avatarURL)
+                        .setColor('#4E575F')
+                        .addField('`Time Taken`:',msg + " ms  ")
+                        .addField('`Discord Api`:',api + " ms  ")
+     .setTimestamp();
+         message.channel.send({embed:embed});
+
+                        }
+                    });
+
 client.login("NDcwMTgxMDU5OTE3Nzc0ODQ5.DjSh8A.cHroYYdktj4oGd_vD6gokJn9lic");

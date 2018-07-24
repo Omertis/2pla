@@ -251,7 +251,7 @@ if (message.content.startsWith(PREFIX + 'setavatar')) {
 }
 });
 
-let prefix = 'm';
+let prefix = '1';
 
 client.on('message', msg => {
 	if (msg.content.startsWith(prefix + 'help')) {
@@ -290,7 +290,7 @@ client.on('message', message => {
 })
 
 client.on('ready', () => {
-  client.user.setGame('❤ والله احبك ❤','https://www.twitch.tv/pd13');
+  client.user.setGame('1play❤','https://www.twitch.tv/pd13');
 });
 
 client.login(process.env.BOT_TOKEN);

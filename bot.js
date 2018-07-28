@@ -14,19 +14,15 @@ client.on('ready', () => {
 console.log('Logging into discord..');
 console.log(`
 Login successful.
-
 -----------------
 -----------------
 ${client.user.username}
-
 Connected to:
 ${client.guilds.size} servers
 ${client.channels.size} channel
 ${client.users.size} users
-
 Prefix: ${PREFIX}
 -----------------
-
 Use this url to bring your bot to a server:
 https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958588585`);
 
@@ -138,12 +134,10 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 		let index = 0;
 		const embedqu = new Discord.RichEmbed()
 	.setDescription(`**Songs Queue**
-
 ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
-
 **The Current Audio Playing** <a:blob:439807830586032138>${serverQueue.songs[0].title}`)
 		return msg.channel.sendEmbed(embedqu);
-	} else if (command === `stop`) {
+	} else if (command === `pause`) {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
@@ -251,32 +245,45 @@ if (message.content.startsWith(PREFIX + 'setavatar')) {
 }
 });
 
-let prefix = '1';
+let prefix = '2';
 
 client.on('message', msg => {
 	if (msg.content.startsWith(prefix + 'help')) {
 msg.author.send("Commands Music " + `  **
-
    "  : الاوامر "
 :headphones:  ${prefix}play |اسم لاغنيه / رابط الاغنية 
 :headphones:  ${prefix}skipللإنتقاال الى الاغنيه التاليه (\اذا كان هناك بقائمة الانتظار\
 :headphones:  ${prefix}stop|لأيقاف الموسيقى  
 :headphones:  ${prefix}volume |لتغير حجم الصوت
 :headphones:  ${prefix}np | لرؤية الموسيقى الشغالة حالياً
-:headphones:  ${prefix}resume |لاعادت تشغيل الاغنية الموجودة
+:headphones:  ${prefix}pause |لايقاف الاغنية الحالية مؤقتا
+:headphones:  ${prefix}resume |لاكمال الاغنية الحالية
+:headphones:  ${prefix}join |لتعليق البوت فالروم
+:headphones:  ${prefix}invite |لدعوة البوت لسيرفرك
+for help = <@426471752877604874>
 **`);
  }
 });
 
+client.on('message' , message => {
+        if (message.content.startsWith(prefix +"invite")) {
 
-
+		const embed = new Discord.RichEmbed()
+     .setColor("#49E353")
+     .setThumbnail(client.user.avatarURL)
+     .setAuthor(message.author.username, message.author.avatarURL)
+     .setTitle('Click Here To Invite The Bot')
+     .setURL('https://discordapp.com/oauth2/authorize?client_id=471238993665589250&permissions=53999680&scope=bot')
+      message.author.sendEmbed(embed);
+       }
+    });
 
 client.on('message', message => {
   // Voice only works in guilds, if the message does not come from a guild,
   // we ignore it
   if (!message.guild) return;
 
-  if (message.content === 'mjoin') {
+  if (message.content === '2join') {
     // Only try to join the sender's voice channel if they are in one themselves
     if (message.member.voiceChannel) {
       message.member.voiceChannel.join()
@@ -290,7 +297,8 @@ client.on('message', message => {
 })
 
 client.on('ready', () => {
-  client.user.setGame('1play❤','https://www.twitch.tv/pd13');
+     client.user.setActivity("2help",{type: 'LISTENING'});
+
 });
 
 client.login(process.env.BOT_TOKEN);

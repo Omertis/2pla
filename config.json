@@ -1,4 +1,5 @@
-{
-	"prefix": "2",
-	"ytApiKey": "AIzaSyAv7Zv2mG6w24B9upvqcEoFrlnsL1MK4e0"
-}
+exports.TOKEN = process.env.BOT_TOKEN; // ya wr3 la tns5
+
+exports.PREFIX = '*';
+
+exports.GOOGLE_API_KEY = 'AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8';

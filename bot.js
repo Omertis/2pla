@@ -293,7 +293,7 @@ client.on('message', message => {
 })
 
 client.on('ready', () => {
-     client.user.setActivity("Bella, Music 🎶.",{type: 'LISTENING'});
+     client.user.setActivity("Little star.",{type: 'LISTENING'});
 
 });
 
